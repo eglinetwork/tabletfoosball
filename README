@@ -3,7 +3,14 @@ README
 
 Required modules
 -------------------------------------------------------------------------------
+Install npm (node package manager)
+https://github.com/isaacs/npm
+
+Install the required modules
 npm install express
 npm install node-config
 npm install ejs
 
+How to run
+-------------------------------------------------------------------------------
+node server.js
