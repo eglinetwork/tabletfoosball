@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title><%= title %></title>
+        <meta name="description" content="<%= description %>">
+        <meta name="author" content="<%= author %>">
+
+        <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+        <link rel="shortcut icon" href="app.<%= app_version %>/<%= app_name %>/favicon.ico">
+        <link rel="apple-touch-icon" href="app.<%= app_version %>/<%= app_name %>/apple-touch-icon.png">
+
+        <!-- Define the application name and version in a global APP object to access it for module paths -->
+        <script type="text/javascript">
+            APP = {};
+            APP.version = '<%= app_version %>';
+            APP.name = '<%= app_name %>';
+        </script>        
+
+        <!-- Grab Yahoo CDN's YUI -->
+        <script src="//yui.yahooapis.com/<%= jslib_yui_version %>/build/yui/yui-min.js"></script>
+        <!-- Loading the application bootstrap script -->
+        <script src="app.<%= app_version %>/<%= app_name %>/<%= app_name %>.js"></script>
+
+        <!-- CSS Stylesheets -->
+        <link rel="stylesheet" type="text/css" href="//yui.yahooapis.com/combo?<%= jslib_yui_version %>/build/cssfonts/fonts-min.css&<%= jslib_yui_version %>/build/cssreset/reset-min.css&<%= jslib_yui_version %>/build/cssgrids/grids-min.css&<%= jslib_yui_version %>/build/cssbase/base-min.css">
+        <link rel="stylesheet" type="text/css" href="app.<%= app_version %>/<%= app_name %>/assets/<%= app_name %>.css">
+
+    </head>
+    <body>
+
+
+        <%- body %>
+
+        <!--! end of #container -->
+
+        <!-- asynchronous google analytics -->
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '<%= analyticssiteid %>']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+
+    </body>
+</html>
