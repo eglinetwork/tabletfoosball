@@ -1,11 +1,11 @@
 
 //setup Dependencies
 //require(__dirname + "/lib/setup").ext( __dirname + "/lib").ext( __dirname + "/lib/express/support");
-var connect = require('connect')
-, express = require('express')
-, sys = require('sys')
-, conf = require('node-config');
-
+var connect = require('connect'),
+express = require('express'),
+sys = require('sys'),
+conf = require('node-config'),
+io = require('socket.io');
 
 conf.initConfig(
     function(err) {
@@ -36,7 +36,8 @@ conf.initConfig(
                 res.render('404', {     
                     title : '404 - Not Found' ,
                     app_version : conf.app.version ,
-                    app_name : 'error' ,
+                    app_name : 'error',
+                    app_port : port,
                     description: '404 - Not Found' ,
                     author: '' ,
                     analyticssiteid: conf.analyticssiteid,
@@ -47,6 +48,7 @@ conf.initConfig(
                     title : '500 - The Server Encountered an Error',
                     app_version : conf.app.version,
                     app_name : 'error',
+                    app_port : port,
                     description: '500 - The Server Encountered an Error',
                     author: '',
                     analyticssiteid: conf.analyticssiteid,
@@ -58,11 +60,7 @@ conf.initConfig(
             }
         });
 
-
-        ///////////////////////////////////////////
-        //              Routes                   //
-        ///////////////////////////////////////////
-
+        /////// ROUTES                   /////////
         /////// ADD ALL THE ROUTES HERE  /////////
 
         app.get('/', function(req,res){
@@ -70,7 +68,21 @@ conf.initConfig(
                 title : 'Tablet Foosball',
                 app_version : conf.app.version,
                 app_name : 'index',
+                app_port : port,
                 description: 'Index',
+                author: 'Marco Egli, Felix Nyffenegger, Martin Bichsel',
+                analyticssiteid: conf.analyticssiteid,
+                jslib_yui_version: conf.jslib.yui.version
+            });
+        });
+
+        app.get('/game', function(req,res){
+            res.render('game', {
+                title : 'Tablet Foosball - Game',
+                app_version : conf.app.version,
+                app_name : 'game',
+                app_port : port,
+                description: 'Game',
                 author: 'Marco Egli, Felix Nyffenegger, Martin Bichsel',
                 analyticssiteid: conf.analyticssiteid,
                 jslib_yui_version: conf.jslib.yui.version
@@ -90,6 +102,35 @@ conf.initConfig(
         var port = conf.port;
         app.listen(port);
         console.log('Listening on port:' + port );
+        
+        // socket.io, I choose you
+        var socket = io.listen(app),
+        buffer = [];
+
+        socket.on('connection', function(client){
+            client.send({
+                buffer: buffer
+            });
+            client.broadcast({
+                announcement: client.sessionId + ' connected'
+            });
+  
+            client.on('message', function(message){
+                var msg = {
+                    message: [client.sessionId, message]
+                };
+                buffer.push(msg);
+                if (buffer.length > 15) buffer.shift();
+                client.broadcast(msg);
+            });
+
+            client.on('disconnect', function(){
+                client.broadcast({
+                    announcement: client.sessionId + ' disconnected'
+                });
+            });
+        });
+        
     });
 
 
