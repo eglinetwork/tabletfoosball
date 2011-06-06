@@ -3,13 +3,14 @@ README
 
 Required modules
 -------------------------------------------------------------------------------
-Install npm (node package manager)
+1. Install npm (node package manager)
 https://github.com/isaacs/npm
 
-Install the required modules
+2. Install the required modules
 npm install express
 npm install node-config
 npm install ejs
+npm install socket.io
 
 How to run
 -------------------------------------------------------------------------------
