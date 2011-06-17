@@ -11,6 +11,12 @@ npm install express
 npm install node-config
 npm install ejs
 npm install socket.io
+npm install connect
+
+git clone git://github.com/eglinetwork/tabletfoosball.git
+cd tabletfoosball/
+git init
+git push origin master
 
 How to run
 -------------------------------------------------------------------------------
