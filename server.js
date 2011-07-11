@@ -1,11 +1,11 @@
 
 //setup Dependencies
-//require(__dirname + "/lib/setup").ext( __dirname + "/lib").ext( __dirname + "/lib/express/support");
-var connect = require('connect'),
-express = require('express'),
+var express = require('express'),
 sys = require('sys'),
 conf = require('node-config'),
 io = require('socket.io');
+
+
 
 conf.initConfig(
     function(err) {
@@ -17,18 +17,30 @@ conf.initConfig(
         // Config loaded, can do those things now
 
         //Setup Express
-        var app = express.createServer( );
+        var app = express.createServer();
+
         
         // Register ejs as .html
         app.register('.html', require('ejs'));
         app.set('view engine', 'html');
-        app.use(connect.bodyDecoder());
-        app.use(connect.staticProvider({
-            root: __dirname + '/static', 
-            cache: true, 
-            maxAge: 10368000000
-        }));
-        app.use(app.router);
+        
+        app.configure(function(){
+            app.use(express.logger('\x1b[33m:method\x1b[0m \x1b[32m:url\x1b[0m :response-time'));
+            app.use(express.bodyParser());
+            app.use(express.methodOverride());
+            app.use(express.cookieParser());
+            app.use(express.session({
+                secret: 'cmw9dnauducvaj'
+            }));
+            app.use(express.static(__dirname + '/static', {
+                maxAge: conf.maxAge
+            }));
+            app.use(app.router);
+            app.use(express.errorHandler({
+                dumpExceptions: true, 
+                showStack: true
+            }));
+        });
 
         //setup the errors
         app.error(function(err, req, res, next){
@@ -106,7 +118,7 @@ conf.initConfig(
         // socket.io, I choose you
         var socket = io.listen(app),
         buffer = [];
-
+    
         socket.on('connection', function(client){
             client.send({
                 buffer: buffer
@@ -114,7 +126,7 @@ conf.initConfig(
             client.broadcast({
                 announcement: client.sessionId + ' connected'
             });
-  
+     
             client.on('message', function(message){
                 var msg = {
                     message: [client.sessionId, message]
@@ -123,7 +135,7 @@ conf.initConfig(
                 if (buffer.length > 15) buffer.shift();
                 client.broadcast(msg);
             });
-
+    
             client.on('disconnect', function(){
                 client.broadcast({
                     announcement: client.sessionId + ' disconnected'
