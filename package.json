@@ -1,0 +1,34 @@
+{
+    "name": "TabletFoosball",
+    "description": "A fooball game for touch devices. Play table football, also known as fussball, foosball or kicker, on your favourite touch device.",
+    "author": "Marco Egli <eglinetwork@gmail.com>",
+    "version": "0.0.1",
+    "private": true,
+    "contributors": [ {
+        "name": "Marco Egli",
+        "email": "eglinetwork@gmail.com"
+    },{
+        "name": "Felix Nyffenegger",
+        "email": "nyfelix@gmail.com"
+    },{
+        "name": "Martin Bichsel",
+        "email": ""
+    }  ],
+    "subdomain" : "eglinetwork",
+    "domains": [
+        "tabletfoosball.ch",
+        "www.tabletfoosball.com"
+    ],    
+    "dependencies": {
+        "express": "3.x",
+        "ejs" : "0.8.x",
+        "socket.io" : "0.9.x"
+    },
+    "scripts": {
+        "start": "node app.js"
+    },
+    "license": "BSD",
+    "engines": {
+        "node": "0.8.x"
+    }
+}
