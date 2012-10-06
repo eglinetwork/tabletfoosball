@@ -1,44 +1,17 @@
 README
-===============================================================================
+======
 
-Required modules
--------------------------------------------------------------------------------
 1. Install npm (node package manager)
 https://github.com/isaacs/npm
 
-
-2. Install the required modules
-npm install express
-npm install node-config
-npm install ejs
-npm install socket.io
-
-Example for a npm listing (npm ls)
-├── ejs@0.4.3 
-├─┬ express@2.4.2 
-│ ├── connect@1.6.0 
-│ ├── mime@1.2.2 
-│ └── qs@0.2.0 
-├── node-config@0.0.2 
-└─┬ socket.io@0.7.6 
-  ├── policyfile@0.0.3 
-  ├── redis@0.6.0 
-  └── socket.io-client@0.7.3 
-
-If you get the error "Object #<Object> has no method 'bodyParser'" try:
-rm -fr ~/.node_libraries/connect
-rm -fr ~/.node_libraries/express
-
-
-3. Clone the repository
+2. Clone the repository
 git clone git://github.com/eglinetwork/tabletfoosball.git
 cd tabletfoosball/
 git init
 git push origin master
 
+3. Install the required modules
+npm install 
 
-4. Add a configuration file for your development server
-
-How to run
--------------------------------------------------------------------------------
-node server.js
+4. Run with 
+node app.js
