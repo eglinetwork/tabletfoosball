@@ -5,6 +5,7 @@ var app = module.exports = express();
 conf = {
     port: 8081,
     analyticssiteid: 'UA-XXXXXXXX-X',
+    maxAge : 31557600000,
     app: {
         version: 'dev'
     },
