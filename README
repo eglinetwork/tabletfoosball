@@ -1,6 +1,9 @@
 README
 ======
 
+Installation
+------------
+
 1. Clone the repository
 git clone git://github.com/eglinetwork/tabletfoosball.git
 cd tabletfoosball/
@@ -12,3 +15,10 @@ adding '.gitignore' file with content '[^.]*' in directory 'tabletfoosball/node_
 
 3. Run application 
 node app.js
+
+References
+----------
+
+Express: http://expressjs.com/
+Socket.io: http://socket.io/
+YUI: http://yuilibrary.com/
