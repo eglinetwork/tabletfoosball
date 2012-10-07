@@ -31,7 +31,9 @@ YUI({
 
         socket.emit('initEvent', {
             initTime: new Date().getTime(),
-            initText: 'init of application completed'
+            initText: 'init of application completed',
+            winHeight: Y.one('#container').get('winHeight'),
+            winWidth: Y.one('#container').get('winWidth')
         });
 
     }
