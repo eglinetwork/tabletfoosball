@@ -12,6 +12,7 @@ git push origin master
 
 3. Install the required modules
 npm install 
+adding '.gitignore' file with content '[^.]*' in directory 'tabletfoosball/node_modules'
 
 4. Run with 
 node app.js
