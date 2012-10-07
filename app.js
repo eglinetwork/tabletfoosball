@@ -1,17 +1,17 @@
-var express = require('express');
-var app = module.exports = express();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-
-conf = {
-    port: 8081,
-    analyticssiteid: 'UA-XXXXXXXX-X',
-    maxAge: 31557600000,
-    app: {
-        version: 'dev'
-    },
-    jslib: {
-        yui: {
+var express = require('express'),
+    app = module.exports = express(),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server),
+    conf = {
+        //port: process.env.PORT,
+        port: 8081,
+        analyticssiteid: 'UA-XXXXXXXX-X',
+        maxAge: 31557600000,
+        app: {
+            version: 'dev'
+        },
+        jslib: {
+            yui: {
             version: '3.7.2'
         }
     }
