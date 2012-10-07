@@ -15,7 +15,6 @@ YUI({
         Y.one('.yui3-js-enabled').removeClass('yui3-js-enabled');
 
         var socket = io.connect(window.origin);
-
         Y.one('#container').on('click', function(e) {
             socket.emit('clickEvent', {
                 clickTime: new Date().getTime(),
