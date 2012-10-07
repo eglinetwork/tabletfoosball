@@ -55,6 +55,9 @@ console.log('application listening on port:' + conf.port);
 
 // Socket.io Handling
 io.sockets.on('connection', function(socket) {
+    socket.on('initEvent', function(data) {
+        console.log(data);
+    });
     socket.on('clickEvent', function(data) {
         console.log(data);
         socket.emit('clickEvent', data);
