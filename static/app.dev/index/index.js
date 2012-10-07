@@ -14,18 +14,22 @@ YUI({
 
         Y.one('.yui3-js-enabled').removeClass('yui3-js-enabled');
 
-        var socket = io.connect('http://localhost:8081');
+        var socket = io.connect('http://localhost:'+APP.port);
 
-        Y.one(document).on('click', function(e) {
+        Y.one('#container').on('click', function(e) {
             socket.emit('clickEvent', {
                 clickTime: new Date().getTime(),
                 clientX: e.clientX,
                 clientY: e.clientY
             });
-        })
+        });
+
+
         socket.on('clickEvent', function(data) {
             var tripTime = new Date().getTime() - data.clickTime;
             console.log('Trip time: '+tripTime+'ms');
+            Y.one('.timelog').append('<p>Trip time: '+tripTime+'ms</p>');
+
         });
 
     }

@@ -27,9 +27,11 @@
         </script>
         <!-- Grab Yahoo CDN's YUI -->
         <script src="//yui.yahooapis.com/<%= jslib_yui_version %>/build/yui/yui-min.js">
+                
         </script>
         <!-- Loading the application bootstrap script -->
         <script src="app.<%= app_version %>/<%= app_name %>/<%= app_name %>.js">
+                
         </script>
         <!-- CSS Stylesheets -->
         <link rel="stylesheet" type="text/css" href="//yui.yahooapis.com/combo?<%= jslib_yui_version %>/build/cssfonts/fonts-min.css&<%= jslib_yui_version %>/build/cssreset/reset-min.css&<%= jslib_yui_version %>/build/cssgrids/grids-min.css&<%= jslib_yui_version %>/build/cssbase/base-min.css">
@@ -42,23 +44,27 @@
                 Tablet Foosball
             </h1>
         </header>
-
+            <div id="container">
+                <p>Click here for roundtrip test</p>
+            </div>
+        <section class='timelog'>
+        </section>
         <footer>
         </footer>
         <!--! end of #container -->
         <!-- asynchronous google analytics -->
         <script type="text/javascript">
-                    var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', '<%= analyticssiteid %>']);
-            _gaq.push(['_trackPageview']);
-            (function() {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            })();
+                            var _gaq = _gaq || [];
+                    _gaq.push(['_setAccount', '<%= analyticssiteid %>']);
+                    _gaq.push(['_trackPageview']);
+                    (function() {
+                        var ga = document.createElement('script');
+                        ga.type = 'text/javascript';
+                        ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(ga, s);
+                    })();
         </script>
     </body>
 
