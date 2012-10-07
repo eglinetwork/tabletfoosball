@@ -14,9 +14,7 @@ YUI({
 
         Y.one('.yui3-js-enabled').removeClass('yui3-js-enabled');
 
-        var socket = io.connect('http://localhost:' + APP.port);
-
-
+        var socket = io.connect(window.origin);
 
         Y.one('#container').on('click', function(e) {
             socket.emit('clickEvent', {
@@ -26,12 +24,10 @@ YUI({
             });
         });
 
-
         socket.on('clickEvent', function(data) {
             var tripTime = new Date().getTime() - data.clickTime;
-            console.log('Trip time: ' + tripTime + 'ms');
+            Y.log('Trip time: ' + tripTime + 'ms');
             Y.one('.timelog').append('<p>Trip time: ' + tripTime + 'ms</p>');
-
         });
 
         socket.emit('initEvent', {
