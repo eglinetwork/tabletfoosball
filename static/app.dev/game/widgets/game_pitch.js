@@ -17,6 +17,7 @@ YUI.add('game_pitch', function(Y) {
         },
 
         renderUI: function() {
+            this._setPitchSize();
             this._drawPitch();
         },
 
@@ -33,6 +34,7 @@ YUI.add('game_pitch', function(Y) {
         //
         resize: function() {
             this._pitchGraphic.destroy();
+            this._setPitchSize();
             this._drawPitch();
         },
 
@@ -61,8 +63,8 @@ YUI.add('game_pitch', function(Y) {
                     weight: 0,
                     color: this.get('colorLines')
                 },
-                width: 320,
-                height: 500,
+                width: this.get('pitchW'),
+                height: this.get('pitchH'),
                 x: 0,
                 y: 0
             });
@@ -81,6 +83,11 @@ YUI.add('game_pitch', function(Y) {
                 y: 200
             });
 
+        },
+
+        _setPitchSize: function() {
+            this.set('pitchW',this.get('contentBox').get('winWidth'));
+            this.set('pitchH',this.get('contentBox').get('winHeight'));
         }
 
     }, {
@@ -96,6 +103,14 @@ YUI.add('game_pitch', function(Y) {
             colorTurfContrast: {
                 value: "#55ff55",
                 validator: Y.Lang.isString
+            },
+            pitchW: {
+                value: 360,
+                validator: Y.Lang.isNumber
+            },
+            pitchH: {
+                value: 567,
+                validator: Y.Lang.isNumber
             }
         }
     });
