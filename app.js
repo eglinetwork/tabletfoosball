@@ -12,10 +12,10 @@ var express = require('express'),
         },
         jslib: {
             yui: {
-            version: '3.7.2'
+                version: '3.7.2'
+            }
         }
-    }
-};
+    };
 
 app.use(function(err, req, res, next) {
     console.error(err.stack);
@@ -34,7 +34,6 @@ app.get('/', function(req, res) {
         title: 'TabletFoosball',
         app_version: conf.app.version,
         app_name: 'index',
-        app_port: conf.port,
         description: 'A fooball game for touch devices. Play table football, also known as fussball, foosball or kicker, on your favourite touch device.',
         author: 'Marco Egli, Felix Nyffenegger, Martin Bichsel',
         analyticssiteid: conf.analyticssiteid,
@@ -42,6 +41,17 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/game', function(req, res) {
+    res.render('game', {
+        title: 'TabletFoosball - GAME',
+        app_version: conf.app.version,
+        app_name: 'game',
+        description: 'A fooball game for touch devices. Play table football, also known as fussball, foosball or kicker, on your favourite touch device.',
+        author: 'Marco Egli, Felix Nyffenegger, Martin Bichsel',
+        analyticssiteid: conf.analyticssiteid,
+        jslib_yui_version: conf.jslib.yui.version
+    });
+});
 
 app.get('/*', function(req, res) {
     console.log(req);
