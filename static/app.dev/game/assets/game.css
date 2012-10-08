@@ -1,0 +1,12 @@
+/**
+ * @author egli
+*/
+
+.yui3-js-enabled {
+    display: none;
+}
+
+.yui3-game_pitch {
+	width: 300px;
+	height: 300px;
+}
