@@ -9,7 +9,7 @@ YUI.add('game_pitch', function(Y) {
         // WIDGET FUNCTIONS
         //
         initializer: function() {
-            //
+            // Instantiate Modules
         },
 
         destructor: function() {
@@ -22,7 +22,7 @@ YUI.add('game_pitch', function(Y) {
         },
 
         bindUI: function() {
-            //
+            // Implement Event controller
         },
 
         syncUI: function() {
