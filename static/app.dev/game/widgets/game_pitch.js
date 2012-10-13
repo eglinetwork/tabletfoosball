@@ -19,6 +19,7 @@ YUI.add('game_pitch', function(Y) {
         renderUI: function() {
             this._setPitchParams();
             this._drawPitch();
+            this._setKickoffPositions();
         },
 
         bindUI: function() {
@@ -46,6 +47,19 @@ YUI.add('game_pitch', function(Y) {
         //
         // PRRIVATE FUNCTIONS
         //
+       _setKickoffPositions: function() {
+            var pitchWidth = this.get('pitchWidth'),
+                pitchHeight = this.get('pitchHeight'),
+                pitchOffsetX = this.get('pitchOffsetX'),
+                pitchOffsetY = this.get('pitchOffsetY'),
+                ball = Y.one('#ball'),
+                barDefenseAway = Y.one('.bar.defense.away'),
+                barDefenseHome = Y.one('.bar.defense.home');
+            ball.setXY([pitchOffsetX + pitchWidth/2 - ball.get('clientWidth')/2, pitchOffsetY + pitchHeight/2 -ball.get('clientWidth')/2]);
+            Y.one('.bar.defense.away').setXY([pitchOffsetX + pitchWidth/2- barDefenseAway.get('clientWidth')/2, pitchOffsetY]);
+            Y.one('.bar.defense.home').setXY([pitchOffsetX + pitchWidth/2- barDefenseHome.get('clientWidth')/2, pitchOffsetY + pitchHeight - barDefenseHome.get('clientHeight')]);
+        },
+
         _drawPitch: function() {
 
             var colorLines = this.get('colorLines'),
@@ -187,7 +201,7 @@ YUI.add('game_pitch', function(Y) {
                 y: pitchOffsetY + (5 * linesWidth) + (12 * OneYd) + linesWidth / 2
             });
 
-            var ball = this._pitchGraphic.addShape({
+            /*var ball = this._pitchGraphic.addShape({
                 type: "circle",
                 radius: this.get('ballSize') / 2,
                 fill: {
@@ -199,7 +213,7 @@ YUI.add('game_pitch', function(Y) {
                 },
                 x: pitchOffsetX + 150,
                 y: pitchOffsetY + 250
-            });
+            });*/
 
         },
 

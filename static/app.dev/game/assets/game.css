@@ -9,3 +9,25 @@
 .yui3-game_pitch {
 
 }
+
+.bar.defense.away {
+	background: #ff0000;
+	position: absolute;
+	width: 100px;
+	height: 20px;
+}
+
+.bar.defense.home {
+	background: #0000ff;
+	position: absolute;
+	width: 100px;
+	height: 20px;
+}
+
+#ball {
+	background: #ffffff;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+
+}
