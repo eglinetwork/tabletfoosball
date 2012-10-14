@@ -139,7 +139,7 @@ YUI.add('game_pitch', function(Y) {
             penaltyAreaHome.lineTo(pitchOffsetX + (pitchWidth / 2) + (22 * OneYd), pitchOffsetY + pitchHeight - (5 * linesWidth) - (18 * OneYd));
             penaltyAreaHome.lineTo(pitchOffsetX + (pitchWidth / 2) + (22 * OneYd), pitchOffsetY + pitchHeight - (5 * linesWidth));
             penaltyAreaHome.end();
-
+            
             var goalAreaHome = this._pitchGraphic.addShape({
                 type: "path",
                 stroke: {
