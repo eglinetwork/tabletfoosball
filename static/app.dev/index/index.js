@@ -26,7 +26,7 @@ YUI({
         socket.on('clickEvent', function(data) {
             var tripTime = new Date().getTime() - data.clickTime;
             Y.log('Trip time: ' + tripTime + 'ms');
-            Y.one('.timelog').append('<p>Trip time: ' + tripTime + 'ms</p>');
+            Y.one('.timelog').append('<p>Trip time: ' + tripTime + 'ms; Sender: '+data.sender+'</p>');
         });
 
         socket.emit('initEvent', {
