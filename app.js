@@ -2,6 +2,10 @@ var express = require('express'),
     app = module.exports = express(),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server),
+
+    player = require("./player"),
+
+
     conf = {
         //port: process.env.PORT,
         port: 8081,
@@ -15,7 +19,9 @@ var express = require('express'),
                 version: '3.7.2'
             }
         }
-    };
+    },
+
+    playerId = "";
 
 app.use(function(err, req, res, next) {
     console.error(err.stack);
@@ -25,11 +31,15 @@ app.use(express.static(__dirname + '/static', {
     maxAge: conf.maxAge
 }));
 
+app.use(express.cookieParser('TabletFoosball'));
+app.use(express.session());
+
 app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
 
 // Routes
 app.get('/', function(req, res) {
+    playerId = player.init(req);
     res.render('index', {
         title: 'TabletFoosball',
         app_version: conf.app.version,
@@ -42,6 +52,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/game', function(req, res) {
+    playerId = player.init(req);
     res.render('game', {
         title: 'TabletFoosball - GAME',
         app_version: conf.app.version,
@@ -65,9 +76,14 @@ console.log('application listening on port:' + conf.port);
 io.sockets.on('connection', function(socket) {
     socket.on('initEvent', function(data) {
         console.log(data);
+        socket.set('playerId', playerId, function() {});
     });
     socket.on('clickEvent', function(data) {
-        console.log(data);
-        socket.emit('clickEvent', data);
+        socket.get('playerId', function(err, playerId) {
+            console.log('clickEvent by player: ', playerId);
+            data.sender = playerId;
+            console.log(data);
+            socket.broadcast.emit('clickEvent', data);
+        });
     });
 });
