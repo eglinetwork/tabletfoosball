@@ -19,9 +19,13 @@ YUI({
         game_pitch_physics: {
             fullpath: '/app.' + APP.version + '/' + APP.name + '/widgets/game_pitch_physics.js',
             requires: ['base', 'node', 'plugin']
+        },
+         game_pitch_graphics: {
+            fullpath: '/app.' + APP.version + '/' + APP.name + '/widgets/game_pitch_graphics.js',
+            requires: ['base', 'node', 'plugin']
         }
     }
-}).use('base', 'node', 'socket_io', 'game_pitch', 'game_pitch_animation', 'game_pitch_physics', function(Y) {
+}).use('base', 'node', 'socket_io', 'game_pitch', 'game_pitch_animation', 'game_pitch_physics', 'game_pitch_graphics', function(Y) {
     function init() {
 
         Y.one('.yui3-js-enabled').removeClass('yui3-js-enabled');
@@ -30,7 +34,8 @@ YUI({
             srcNode: "#pitch",
             plugins: [
                 Y.APP.PitchPhysics,
-                Y.APP.PitchAnimation
+                Y.APP.PitchAnimation,
+                Y.APP.PitchGraphics
             ]
         });
         Y.APP.pitch.render();
